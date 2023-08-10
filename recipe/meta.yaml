@@ -1,5 +1,5 @@
 {% set name = "openssh" %}
-{% set version = "9.3p1" %}
+{% set version = "9.4p1" %}
 
 package:
   name: {{ name }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/{{ name }}-{{ version }}.tar.gz
-  sha256: e9baba7701a76a51f3d85a62c383a3c9dcd97fa900b859bc7db114c1868af8a8
+  sha256: 3608fd9088db2163ceb3e600c85ab79d0de3d221e59192ea1923e23263866a85
   patches:
     - 0001-Set-strip-program-when-running-install.patch  # [linux]
     - 0002-ssh_compatible_openssl-for-openssl3.diff
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
