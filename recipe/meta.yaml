@@ -13,7 +13,7 @@ source:
     - 0002-ssh_compatible_openssl-for-openssl3.diff
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
 
 requirements:
@@ -28,6 +28,7 @@ requirements:
     - zlib
     - libedit
     - libfido2
+    - libxcrypt  # [linux]
     - krb5
     - openssl
 
