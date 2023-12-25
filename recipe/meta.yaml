@@ -19,6 +19,7 @@ build:
 requirements:
   build:
     - autoconf
+    - automake
     - pkg-config
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
