@@ -1,5 +1,5 @@
 {% set name = "openssh" %}
-{% set version = "9.6p1" %}
+{% set version = "9.8p1" %}
 
 package:
   name: {{ name }}
@@ -7,10 +7,9 @@ package:
 
 source:
   url: http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/{{ name }}-{{ version }}.tar.gz
-  sha256: 910211c07255a8c5ad654391b40ee59800710dd8119dd5362de09385aa7a777c
+  sha256: dd8bd002a379b5d499dfb050dd1fa9af8029e80461f4bb6c523c49973f5a39f3
   patches:
     - 0001-Set-strip-program-when-running-install.patch  # [linux]
-    - 0002-better-detection-of-broken--fzero-call-used-regs.patch
 
 build:
   number: 0
@@ -23,8 +22,8 @@ requirements:
     - pkg-config
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - make
-    - sysroot_linux-64 2.17  # [linux64]
   host:
     - zlib
     - libedit
