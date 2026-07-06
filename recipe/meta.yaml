@@ -1,5 +1,5 @@
 {% set name = "openssh" %}
-{% set version = "10.2p1" %}
+{% set version = "10.4p1" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/{{ name }}-{{ version }}.tar.gz
-  sha256: ccc42c0419937959263fa1dbd16dafc18c56b984c03562d2937ce56a60f798b2
+  sha256: ef6026dd2aea8d56059638d5d3262902c892ceba9f88395835e0d06d3fb63238
   patches:
     - 0001-Set-strip-program-when-running-install.patch  # [linux]
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
