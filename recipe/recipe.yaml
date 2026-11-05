@@ -1,0 +1,70 @@
+context:
+  version: "10.6p2"
+
+package:
+  name: openssh
+  version: ${{ version }}
+
+source:
+  url: https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${{ version }}.tar.gz
+  sha256: 9ae44872090cf2f06b3cf9ff147e7f16f309671340763ed2f99248398ae29d5b
+  patches:
+    - if: linux
+      then: 0001-Set-strip-program-when-running-install.patch
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - autoconf
+    - automake
+    - pkgconf
+    - coreutils
+    - if: unix
+      then: gnuconfig
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+  host:
+    - zlib
+    - libedit
+    - libfido2
+    - if: linux
+      then: libxcrypt
+    - krb5
+    - openssl
+
+tests:
+  - package_contents:
+      bin:
+        - scp
+        - sftp
+        - ssh
+        - ssh-add
+        - ssh-agent
+        - sshd
+        - ssh-keygen
+        - ssh-keyscan
+  - script:
+      - ssh -V
+      - ssh-keygen -t rsa -b 4096 -f id_rsa -P do-not-pass-passwords
+
+about:
+  homepage: https://www.openssh.com/
+  license: SSH-OpenSSH
+  license_file: LICENCE
+  summary: A suite of secure networking utilities based on the SSH protocol
+  description: |
+    OpenSSH is the premier connectivity tool for remote login with the SSH
+    protocol. It encrypts all traffic to eliminate eavesdropping, connection
+    hijacking, and other attacks. In addition, OpenSSH provides a large suite
+    of secure tunneling capabilities, several authentication methods, and
+    sophisticated configuration options.
+  repository: https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/
+
+extra:
+  recipe-maintainers:
+    - chrisburr
+    - nehaljwani

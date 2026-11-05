@@ -17,7 +17,6 @@ hijacking, and other attacks. In addition, OpenSSH provides a large suite
 of secure tunneling capabilities, several authentication methods, and
 sophisticated configuration options.
 
-
 Current build status
 ====================
 
